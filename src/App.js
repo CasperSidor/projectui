@@ -10,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" />
           <Route path="/cart" />
+          <Route path="/contact" />
         </Routes>
       </Router>
       
