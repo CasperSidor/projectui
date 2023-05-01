@@ -1,5 +1,36 @@
-import React from 'react'
-
+import React, { useContext } from 'react';
+import { PRODUCTS } from '../../products';
+import { ShopContext } from '../../context/shop-context';
+import {CartItem} from './cart-item';
+import './cart.css';
+import { useNavigate } from 'react-router-dom';
+ 
 export const Cart = () => {
-  return <div>cart</div>
+  const{cartItems, getTotalCartAmount, checkout} = useContext(ShopContext);
+  const totalAmount = getTotalCartAmount()
+  const navigate = useNavigate()
+
+  return (  
+    <div className="cart"> 
+      <div>
+        <h1>Bøger i indkøbskurv</h1>
+      </div>
+      <div className="cartItems">
+        {PRODUCTS.map((product)=>{
+          if (cartItems[product.id] !==0){
+            return<CartItem data={product}/>
+          }
+        })}
+      </div>
+    {totalAmount > 0 ?(
+      <div className="checkout">
+        <p>Din Total: {totalAmount} kr.</p>
+        <button onClick={() => navigate("/")}> Shop videre</button>
+        <button> Betal</button>
+      </div>
+    ) : (
+      <h1>Din kurv er tom</h1>
+    )}
+    </div>
+  )
 }
