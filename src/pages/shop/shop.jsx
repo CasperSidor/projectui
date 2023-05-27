@@ -7,7 +7,7 @@ export const Shop = () => {
   return (
   <div className="shop">
     <div className="shopTitle">
-        <h1> Caspers Shop</h1>
+        <h1> FYNS Antikvariat</h1>
     </div>
     <div className="products">
       {PRODUCTS.map((product)=>
